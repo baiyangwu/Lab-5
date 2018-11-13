@@ -141,9 +141,9 @@ public class SudokuTest {
 	@Test
 	public void Sudoku_Difficulty_1() {
 		try {
-			Sudoku s1 = new Sudoku(9, eGameDifficulty.EASY);
-			s1.PrintPuzzle();
-			assertFalse(s1.isSudoku());
+			Sudoku a = new Sudoku(9, eGameDifficulty.EASY);
+			a.PrintPuzzle();
+			assertFalse(a.isSudoku());
 		} catch (Exception e) {
 			fail("Test failed to build a Sudoku");
 		}
@@ -152,9 +152,9 @@ public class SudokuTest {
 	@Test
 	public void Sudoku_Difficulty_2() {
 		try {
-			Sudoku s1 = new Sudoku(9, eGameDifficulty.MEDIUM);
-			s1.PrintPuzzle();
-			assertFalse(s1.isSudoku());
+			Sudoku a = new Sudoku(9, eGameDifficulty.MEDIUM);
+			a.PrintPuzzle();
+			assertFalse(a.isSudoku());
 		} catch (Exception e) {
 			fail("Test failed to build a Sudoku");
 		}
@@ -163,9 +163,9 @@ public class SudokuTest {
 	@Test
 	public void Sudoku_Difficulty_3() {
 		try {
-			Sudoku s1 = new Sudoku(9, eGameDifficulty.HARD);
-			s1.PrintPuzzle();
-			assertFalse(s1.isSudoku());
+			Sudoku a = new Sudoku(9, eGameDifficulty.HARD);
+			a.PrintPuzzle();
+			assertFalse(a.isSudoku());
 		} catch (Exception e) {
 			fail("Test failed to build a Sudoku");
 		}

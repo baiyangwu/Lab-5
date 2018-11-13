@@ -48,6 +48,8 @@ public class Sudoku extends LatinSquare implements Serializable {
 	 */
 
 	private int iSqrtSize;
+	
+//---------------------------------------------------Lab 5-----------------------------------------------
 
 	private HashMap<Integer, SudokuCell> cells = new HashMap<Integer, SudokuCell>();
 	
@@ -58,63 +60,62 @@ public class Sudoku extends LatinSquare implements Serializable {
 		this.eGameDifficulty = eGameDifficulty.EASY;
 	}
 	
+	
 	public Sudoku(int iSize, eGameDifficulty eGD) throws Exception {
 		this(iSize);
 		this.eGameDifficulty = eGD;
 		RemoveCells();
 	}
 	
+	
 	private void SetRemainingCells() {
 		for (int iRow = 0; iRow < iSize; iRow++) {
 			for (int iCol = 0; iCol < iSize; iCol++) {
-				if (getPuzzle()[iRow][iCol] == 0) {
-					SudokuCell c = new SudokuCell(iRow, iCol);
-					c.setlstValidValues(getAllValidCellValues(iCol, iRow));
-					cells.put(c.hashCode(), c);
+				if (getPuzzle()[iCol][iRow] == 0) {
+					SudokuCell a = new SudokuCell(iRow, iCol);
+					a.setlstValidValues(getAllValidCellValues(iCol, iRow));
+					cells.put(a.hashCode(), a);
 				}
 			}
 		}
 	}
 	
+	
 	private static int PossibleValuesMultiplier(HashMap<Integer, SudokuCell> cells) {
-		int multiplier = 1;
-		Iterator<Entry<Integer, SudokuCell>> it = cells.entrySet().iterator();
+		int i = 1;
+		Iterator<Entry<Integer, SudokuCell>> a = cells.entrySet().iterator();
 		
-		while (it.hasNext()) {
-			Map.Entry<Integer, SudokuCell> pair = (Map.Entry<Integer, SudokuCell>) it.next();
-			multiplier *= (pair.getValue().getLstValidValues() != null) ?
-					pair.getValue().getLstValidValues().size() : 1;
-			it.remove();
+		while (a.hasNext()) {
+			Map.Entry<Integer, SudokuCell> b = (Map.Entry<Integer, SudokuCell>) a.next();
+			i *= (b.getValue().getLstValidValues() != null) ? b.getValue().getLstValidValues().size() : 1;
+			a.remove();
 		}
-		
-		return multiplier < Integer.MAX_VALUE ? multiplier : Integer.MAX_VALUE;	
+		int c = i < Integer.MAX_VALUE ? i: Integer.MAX_VALUE;	
+		return c;
 	}
+	
 	
 	private boolean IsDifficultyMet(int iPossibleValues) {
-		return eGameDifficulty.getiDifficulty() < iPossibleValues;
+		boolean a = eGameDifficulty.getiDifficulty() < iPossibleValues;
+		return a;
 	}
+	
 	
 	private void RemoveCells() {
-		Random rand = new SecureRandom();
-		int multiplier;
+		Random a = new SecureRandom();
+		int i;
 		
 		do {
-			int iRow = rand.nextInt(iSize);
-			int iCol = rand.nextInt(iSize);
-			getPuzzle()[iRow][iCol] = 0; 
+			int iCol = a.nextInt(iSize);
+			int iRow = a.nextInt(iSize);
+			getPuzzle()[iCol][iRow] = 0; 
 			SetRemainingCells();
-			multiplier = PossibleValuesMultiplier(cells);
-		} while (!IsDifficultyMet(multiplier));
+			i = PossibleValuesMultiplier(cells);
+		} 
+		while (!IsDifficultyMet(i));
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+//---------------------------------------------------------------------------------------------------------
 	
 	
 	/**
