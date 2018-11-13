@@ -71,7 +71,7 @@ public class Sudoku extends LatinSquare implements Serializable {
 	private void SetRemainingCells() {
 		for (int iRow = 0; iRow < iSize; iRow++) {
 			for (int iCol = 0; iCol < iSize; iCol++) {
-				if (getPuzzle()[iCol][iRow] == 0) {
+				if (getPuzzle()[iRow][iCol] == 0) {
 					SudokuCell a = new SudokuCell(iRow, iCol);
 					a.setlstValidValues(getAllValidCellValues(iCol, iRow));
 					cells.put(a.hashCode(), a);
@@ -108,7 +108,7 @@ public class Sudoku extends LatinSquare implements Serializable {
 		do {
 			int iCol = a.nextInt(iSize);
 			int iRow = a.nextInt(iSize);
-			getPuzzle()[iCol][iRow] = 0; 
+			getPuzzle()[iRow][iCol] = 0; 
 			SetRemainingCells();
 			i = PossibleValuesMultiplier(cells);
 		} 
